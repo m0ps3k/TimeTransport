@@ -1,0 +1,11 @@
+﻿<Solution>
+  <Project Path="TimeTransport.Android/TimeTransport.Android.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="TimeTransport.Browser/TimeTransport.Browser.csproj" />
+  <Project Path="TimeTransport.Desktop/TimeTransport.Desktop.csproj" />
+  <Project Path="TimeTransport.iOS/TimeTransport.iOS.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="TimeTransport/TimeTransport.csproj" />
+</Solution>

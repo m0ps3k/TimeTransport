@@ -1,0 +1,195 @@
+{
+  "routes": [
+    {
+      "number": "119",
+      "directions": {
+        "forward": {
+          "stops": [
+            {
+              "id": "utkina_zavod",
+              "name": "Уткина Заводь",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            }
+          ]
+        },
+        "backward": {
+          "stops": [
+            {
+              "id": "lomono",
+              "name": "м. Ломоносовская",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            },
+            {
+              "id": "volodarsky_bridge",
+              "name": "Володарский мост",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            },
+            {
+              "id": "october_emb_106",
+              "name": "Октябрьская наб 106",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "number": "285",
+      "directions": {
+        "forward": {
+          "stops": [
+            {
+              "id": "utkina_zavod",
+              "name": "Уткина Заводь",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            }
+          ]
+        },
+        "backward": {
+          "stops": [
+            {
+              "id": "tov_prospect",
+              "name": "Товарищеский проспект",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            },
+            {
+              "id": "dybenko_metro",
+              "name": "Метро улица Дыбенко",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            },
+            {
+              "id": "october_emb_106",
+              "name": "Октябрьская наб 106",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "number": "4",
+      "directions": {
+        "forward": {
+          "stops": [
+            {
+              "id": "utkina_zavod",
+              "name": "Уткина Заводь",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            }
+          ]
+        },
+        "backward": {
+          "stops": [
+            {
+              "id": "tov_prospect",
+              "name": "Товарищеский проспект",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            },
+            {
+              "id": "dybenko_metro",
+              "name": "Метро улица Дыбенко",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            },
+            {
+              "id": "october_emb_106",
+              "name": "Октябрьская наб 106",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "number": "476",
+      "directions": {
+        "forward": {
+          "stops": []
+        },
+        "backward": {
+          "stops": [
+            {
+              "id": "lomono",
+              "name": "м. Ломоносовская",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            },
+            {
+              "id": "volodarsky_bridge",
+              "name": "Володарский мост",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "number": "8",
+      "directions": {
+        "forward": {
+          "stops": []
+        },
+        "backward": {
+          "stops": [
+            {
+              "id": "lomono",
+              "name": "м. Ломоносовская",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            },
+            {
+              "id": "volodarsky_bridge",
+              "name": "Володарский мост",
+              "schedule": {
+                "weekday": {},
+                "weekend": {}
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

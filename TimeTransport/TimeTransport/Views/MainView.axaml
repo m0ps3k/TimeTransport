@@ -7,5 +7,24 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="TimeTransport.Views.MainView"
              x:DataType="vm:MainViewModel">
-            
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid ColumnDefinitions="*, *" Margin="10" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button Content="Туда" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"></Button>
+            <Button Content="Обратно" Grid.Column="1" HorizontalAlignment="Stretch"  HorizontalContentAlignment="Center"></Button>
+        </Grid>
+
+        <ComboBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" ItemsSource="{Binding Stops}" SelectedItem="{Binding }" PlaceholderText="Выберите остановку"></ComboBox>
+    </Grid>
+
+
 </UserControl>

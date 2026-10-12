@@ -7,6 +7,9 @@ namespace TimeTransport.ViewModels;
 
 public partial class MainWindowModel : ViewModelBase
 {
+    [ObservableProperty]
+    private ViewModelBase contentValue = new MainViewModel();
+
     public TimetableService _timetableService;
 
     public MainWindowModel(TimetableService timetableService)

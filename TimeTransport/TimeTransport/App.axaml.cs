@@ -22,10 +22,10 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = new MainViewModel()
-            };
+            var mainWindow = new MainWindow();
+            desktop.MainWindow = mainWindow;
+            TimetableService = new TimetableService(await Services.TimetableService.LoadAsync());
+            mainWindow.DataContext = new MainWindowModel(TimetableService);
         }
         else if (ApplicationLifetime is IActivityApplicationLifetime singleViewFactoryApplicationLifetime)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Avalonia.Collections;
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace TimeTransport.Models;
 
@@ -32,4 +33,11 @@ public class Route
 public class Timetable
 {
     public List<Route> Routes { get; set; } = [];
+}
+
+public class DisplayType
+{
+    public string Number { get; set; } = "";
+    public string Destination { get; set; } = "";
+
 }

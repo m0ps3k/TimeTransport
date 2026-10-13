@@ -1,10 +1,9 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:TimeTransport"
+             xmlns:models="using:TimeTransport.Models"
              x:Class="TimeTransport.App"
-             RequestedThemeVariant="Default"
-             xmlns:models="using:TimeTransport.Models">
-    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+             RequestedThemeVariant="Light">
 
     <Application.DataTemplates>
         <local:ViewLocator/>
@@ -12,27 +11,57 @@
         <DataTemplate DataType="{x:Type models:DisplayType}"
                       x:DataType="models:DisplayType">
 
-            <Border Margin="0,0,0,8"
-                    Padding="12"
-                    CornerRadius="8"
-                    BorderBrush="Gray"
+            <Border Classes="trip"
+                    Margin="0,0,0,12"
+                    Padding="20,16"
+                    CornerRadius="20"
                     BorderThickness="1">
 
-                <Grid ColumnDefinitions="Auto,*,Auto">
-                    <TextBlock Grid.Column="0"
-                               Text="{Binding Number}"
-                               FontWeight="Bold"
-                               VerticalAlignment="Center"/>
+                <Grid ColumnDefinitions="*,Auto">
 
-                    <TextBlock Grid.Column="1"
-                               Margin="12,0"
-                               Text="{Binding Destination}"
-                               TextWrapping="Wrap"
-                               VerticalAlignment="Center"/>
+                    <!-- Маршрут и направление -->
+                    <StackPanel Grid.Column="0"
+                                Margin="0,0,16,0"
+                                Spacing="4"
+                                VerticalAlignment="Center">
 
-                    <TextBlock Grid.Column="2"
-                               Text="{Binding Time}"
-                               VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Number}"
+                                   FontSize="34"
+                                   FontWeight="Bold"/>
+
+                        <TextBlock Classes="detail"
+                                   Text="{Binding Destination}"
+                                   FontSize="12"
+                                   TextWrapping="Wrap"/>
+                    </StackPanel>
+
+                    <!-- Подпись и минуты -->
+                    <Grid Grid.Column="1"
+                          ColumnDefinitions="Auto,Auto"
+                          RowDefinitions="Auto,Auto"
+                          VerticalAlignment="Center">
+
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Classes="status"
+                                   FontSize="11"
+                                   Margin="0,0,10,8"
+                                   VerticalAlignment="Bottom"/>
+
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="1"
+                                   Text="{Binding Time}"
+                                   FontSize="44"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"/>
+
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="мин"
+                                   FontSize="12"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"/>
+                    </Grid>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -41,9 +70,134 @@
     <Application.Styles>
         <FluentTheme/>
 
-        <Style Selector="ItemsControl">
-            <Setter Property="Margin" Value="10"/>
+        <!-- Основной вид карточки -->
+        <Style Selector="Border.trip">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+        </Style>
+
+        <Style Selector="Border.trip TextBlock">
+            <Setter Property="Foreground" Value="#172033"/>
+        </Style>
+
+        <Style Selector="Border.trip TextBlock.detail">
+            <Setter Property="Foreground" Value="#64748B"/>
+        </Style>
+
+        <!-- Уже отправился -->
+        <Style Selector="ItemsControl.before TextBlock.status">
+            <Setter Property="Text" Value="отправился"/>
+            <Setter Property="Foreground" Value="#64748B"/>
+        </Style>
+
+        <!-- Будущие отправления: серые карточки -->
+        <Style Selector="ItemsControl.after Border.trip">
+            <Setter Property="Background" Value="#EEF1F5"/>
+            <Setter Property="BorderBrush" Value="#E2E6EC"/>
+            <Setter Property="Opacity" Value="0.75"/>
+        </Style>
+
+        <Style Selector="ItemsControl.after Border.trip TextBlock">
+            <Setter Property="Foreground" Value="#64748B"/>
+        </Style>
+
+        <Style Selector="ItemsControl.after TextBlock.status">
+            <Setter Property="Text" Value="будет через"/>
+        </Style>
+
+        <!-- Отправляется сейчас: яркая карточка -->
+        <Style Selector="ItemsControl.now Border.trip">
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Background">
+                <LinearGradientBrush StartPoint="0%,0%"
+                                     EndPoint="100%,100%">
+                    <GradientStop Color="#7C3AED" Offset="0"/>
+                    <GradientStop Color="#DB2777" Offset="0.55"/>
+                    <GradientStop Color="#F97316" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter>
+        </Style>
+
+        <Style Selector="ItemsControl.now Border.trip TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="ItemsControl.now TextBlock.status">
+            <Setter Property="Text" Value="отправляется"/>
+        </Style>
+
+        <!-- Заголовки -->
+        <Style Selector="TextBlock.pageTitle">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#172033"/>
+        </Style>
+
+        <Style Selector="TextBlock.subtitle">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#64748B"/>
+        </Style>
+
+        <!-- Кнопки направления -->
+        <Style Selector="Button.direction">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#64748B"/>
+            <Setter Property="Padding" Value="16,12"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="12"
+                            Padding="{TemplateBinding Padding}">
+
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="Button.direction:pointerover">
+            <Setter Property="Background" Value="#E2E8F0"/>
+        </Style>
+
+        <Style Selector="Button.direction.active">
+            <Setter Property="Background" Value="#172033"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="Button.direction.active:pointerover">
+            <Setter Property="Background" Value="#334155"/>
+        </Style>
+
+        <Style Selector="Button.direction:pressed">
+            <Setter Property="Opacity" Value="0.8"/>
+        </Style>
+
+        <Style Selector="Button.direction:focus-visible">
+            <Setter Property="Background" Value="#DDD6FE"/>
+            <Setter Property="Foreground" Value="#172033"/>
+        </Style>
+
+        <!-- Выбор остановки -->
+        <Style Selector="ComboBox.stopPicker">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#CBD5E1"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="MinHeight" Value="46"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
         </Style>
     </Application.Styles>
-
 </Application>

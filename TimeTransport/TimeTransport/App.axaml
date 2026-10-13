@@ -87,22 +87,22 @@
         <!-- Уже отправился -->
         <Style Selector="ItemsControl.before TextBlock.status">
             <Setter Property="Text" Value="отправился"/>
-            <Setter Property="Foreground" Value="#64748B"/>
         </Style>
 
-        <!-- Будущие отправления: серые карточки -->
-        <Style Selector="ItemsControl.after Border.trip">
+        <!-- Уже отправились: серые карточки -->
+        <Style Selector="ItemsControl.before Border.trip">
             <Setter Property="Background" Value="#EEF1F5"/>
             <Setter Property="BorderBrush" Value="#E2E6EC"/>
             <Setter Property="Opacity" Value="0.75"/>
         </Style>
 
-        <Style Selector="ItemsControl.after Border.trip TextBlock">
+        <Style Selector="ItemsControl.before Border.trip TextBlock">
             <Setter Property="Foreground" Value="#64748B"/>
         </Style>
 
         <Style Selector="ItemsControl.after TextBlock.status">
             <Setter Property="Text" Value="будет через"/>
+            <Setter Property="Foreground" Value="#64748B"/>
         </Style>
 
         <!-- Отправляется сейчас: яркая карточка -->

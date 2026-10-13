@@ -4,7 +4,7 @@
     <TargetFramework>net10.0-android</TargetFramework>
     <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
     <Nullable>enable</Nullable>
-    <ApplicationId>com.CompanyName.TimeTransport</ApplicationId>
+    <ApplicationId>TimeTransport_by_m0ps3k</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
@@ -12,8 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <AndroidResource Include="Icon.png">
-      <Link>Resources\drawable\Icon.png</Link>
+    <AndroidResource Remove="Resources/new_icon/**/*.png" />
+    <AndroidResource Include="Resources/new_icon/**/*.png">
+      <Link>Resources\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </AndroidResource>
   </ItemGroup>
 

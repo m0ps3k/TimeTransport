@@ -44,9 +44,9 @@ public partial class MainViewModel : ViewModelBase
     public MainViewModel(TimetableService _timetableService)
     {
         timetableService = _timetableService;
-        if (DateTime.Now.Hour <= 12) directionIsBackward = false;
+        if (DateTime.Now.Hour <= 12 && DateTime.Now.Hour > 2) directionIsBackward = false;
         else directionIsBackward = true;
-        if (DateTime.Now.Hour <= 20) SelectedStop = "М. Ломоносовская";
+        if (DateTime.Now.Hour <= 20 && DateTime.Now.Hour > 2) SelectedStop = "М. Ломоносовская";
         else SelectedStop = "Володарский мост";
         _ = LoadAsync();
     }

@@ -20,22 +20,24 @@ public partial class App : Application
 
     public override async void OnFrameworkInitializationCompleted()
     {
+        TimetableService = new TimetableService();
+
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var mainWindow = new MainWindow();
-            desktop.MainWindow = mainWindow;
-            TimetableService = new TimetableService(await Services.TimetableService.LoadAsync());
-            mainWindow.DataContext = new MainWindowModel(TimetableService);
+            desktop.MainWindow = new MainWindow
+            {
+                DataContext = new MainWindowModel(TimetableService)
+            };
         }
         else if (ApplicationLifetime is IActivityApplicationLifetime singleViewFactoryApplicationLifetime)
         {
-            singleViewFactoryApplicationLifetime.MainViewFactory = () => new MainView { DataContext = new MainViewModel() };
+            singleViewFactoryApplicationLifetime.MainViewFactory = () => new MainView { DataContext = new MainViewModel(TimetableService) };
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
             singleViewPlatform.MainView = new MainView
             {
-                DataContext = new MainViewModel()
+                DataContext = new MainViewModel(TimetableService)
             };
         }
 

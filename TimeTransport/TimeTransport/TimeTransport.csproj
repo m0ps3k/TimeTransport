@@ -19,6 +19,6 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" />
-    <EmbeddedResource Include="Data\timetable.json" />
+    <EmbeddedResource Include="Data/timetable.json" />
   </ItemGroup>
 </Project>

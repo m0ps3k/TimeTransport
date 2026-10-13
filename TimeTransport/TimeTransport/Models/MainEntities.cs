@@ -23,11 +23,16 @@ public class Direction
     public List<Stop> Stops { get; set; } = [];
 }
 
+public class Directions
+{
+    public Direction Forward { get; set; } = new();
+    public Direction Backward { get; set; } = new();
+}
+
 public class Route
 {
     public string Number { get; set; } = "";
-    public Direction Forward { get; set; } = new();
-    public Direction Backward { get; set; } = new();
+    public Directions Directions { get; set; } = new();
 }
 
 public class Timetable
@@ -35,9 +40,10 @@ public class Timetable
     public List<Route> Routes { get; set; } = [];
 }
 
-public class DisplayType
+public record DisplayType
 {
     public string Number { get; set; } = "";
     public string Destination { get; set; } = "";
+    public int Time { get; set; }
 
 }

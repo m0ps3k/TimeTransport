@@ -114,17 +114,35 @@ public class TimetableService
 
             // if (CurrentHour - 1 >= 5) MinutesBefore = stopSchedule[route][Convert.ToString(CurrentHour - 1)];
             // else if (CurrentHour - 1 == -1) MinutesBefore = stopSchedule[route][Convert.ToString(0)];
-            if (CurrentHour - 1 == -1) MinutesBefore = stopSchedule[route][Convert.ToString(0)];
-            else MinutesBefore = stopSchedule[route][Convert.ToString(CurrentHour - 1)];
-            MinutesCurrent = stopSchedule[route][Convert.ToString(CurrentHour)];
+
+            // if (CurrentHour - 1 == -1) MinutesBefore = stopSchedule[route][Convert.ToString(0)];
+            // else MinutesBefore = stopSchedule[route][Convert.ToString(CurrentHour - 1)];
+
+            if (stopSchedule.TryGetValue(route, out var routeScheduleBefore) && routeScheduleBefore.TryGetValue(Convert.ToString((CurrentHour - 1 != -1) ? CurrentHour : 23), out var departuresBefore))
+            {
+                MinutesCurrent = departuresBefore;
+            }
+
+            if (stopSchedule.TryGetValue(route, out var routeSchedule) && routeSchedule.TryGetValue(Convert.ToString(CurrentHour), out var departures))
+            {
+                MinutesCurrent = departures;
+            }
+
+            if (stopSchedule.TryGetValue(route, out var routeScheduleAfter) && routeScheduleAfter.TryGetValue(Convert.ToString((CurrentHour + 1 != 24) ? CurrentHour : 0), out var departuresAfter))
+            {
+                MinutesCurrent = departuresAfter;
+            }
+
             // if (CurrentHour + 1 != 24) MinutesAfter = stopSchedule[route][Convert.ToString(CurrentHour + 1)];
             // else if (CurrentHour + 1 == 24) MinutesAfter = stopSchedule[route][Convert.ToString(0)];
-            if (CurrentHour + 1 == 24) MinutesAfter = stopSchedule[route][Convert.ToString(0)];
-            else MinutesAfter = stopSchedule[route][Convert.ToString(CurrentHour + 1)];
+
+            // if (CurrentHour + 1 == 24) MinutesAfter = stopSchedule[route][Convert.ToString(0)];
+            // else MinutesAfter = stopSchedule[route][Convert.ToString(CurrentHour + 1)];
+
             foreach (var i in MinutesBefore)
             {
                 var departure = TimeOnly.ParseExact(i, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-                filterSchedules.Add(new FilterSchedule { Hour = CurrentHour - 1, Minute = departure.Minute, Route = route });
+                filterSchedules.Add(new FilterSchedule { Hour = (CurrentHour - 1 == -1) ? 0 : CurrentHour, Minute = departure.Minute, Route = route });
             }
             foreach (var i in MinutesCurrent)
             {
@@ -134,7 +152,7 @@ public class TimetableService
             foreach (var i in MinutesAfter)
             {
                 var departure = TimeOnly.ParseExact(i, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-                filterSchedules.Add(new FilterSchedule { Hour = CurrentHour + 1, Minute = departure.Minute, Route = route });
+                filterSchedules.Add(new FilterSchedule { Hour = (CurrentHour + 1 == 24) ? 0 : CurrentHour, Minute = departure.Minute, Route = route });
             }
             // }
         }

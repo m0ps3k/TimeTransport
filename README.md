@@ -1,4 +1,7 @@
 # Мой транспорт — TimeTransport
+Целевая платформа - Android
+
+[![Скачать APK](https://img.shields.io/badge/Android-Скачать_APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/m0ps3k/TimeTransport/releases/latest/download/TimeTransport.apk)
 
 Приложение для просмотра расписания автобусов Санкт-Петербурга и окрестностей. Показывает время до отправления в минутах для выбранного направления и остановки.
 
